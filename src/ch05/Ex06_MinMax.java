@@ -19,7 +19,7 @@ public class Ex06_MinMax {
 				max = score;
 			}
 		}
-		System.out.println("최대값:" + max);
+		System.out.println("최소값:" + max);
 		int min = 100;
 		for (int score: scores) {
 			if (score < min) {
@@ -27,6 +27,8 @@ public class Ex06_MinMax {
 			}
 		}
 		System.out.println("최소값:" + min);
+		
+		
 	}
 
 }
