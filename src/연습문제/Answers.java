@@ -1,4 +1,4 @@
-package ch06;
+package 연습문제;
 
 import java.util.Random;
 import java.util.Scanner;
