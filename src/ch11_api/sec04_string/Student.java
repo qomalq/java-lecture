@@ -3,7 +3,7 @@ package ch11_api.sec04_string;
 public class Student implements Comparable {
 	int sno;
 	String name;
-	Student (int sno, String name) {
+	public Student (int sno, String name) {
 		this.sno = sno;
 		this.name = name;
 	}
