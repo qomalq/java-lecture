@@ -32,9 +32,21 @@ public class Arr {
 			}
 			else
 				map.put(newWord, 1);
+			
 				
 		}
+		List<Map.Entry<String, Integer>> entryList = new ArrayList<>(map.entrySet());
+		entryList.sort(Map.Entry.comparingByValue());
+		for (Map.Entry<String, Integer>entry : entryList)
+			if (entry.getValue() >= 4)
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		
+		entryList.sort(new MyComparator());
+		for (Map.Entry<String, Integer>entry : entryList)
+			if (entry.getValue() >= 4)
+			System.out.println(entry.getKey() + ":" + entry.getValue());
 	}
 }
+
 
 
