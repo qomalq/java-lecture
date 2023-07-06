@@ -146,7 +146,7 @@ SELECT GROUP_CONCAT(district) FROM city
 	WHERE countrycode='KOR';		# Seoul,Pusan,Inchon,Taegu, ...
 
 /*
- * 1.5 그룹 조건
+ * 1.6 그룹 조건
  */
 # 국내 도시의 갯수가 5개 이상인 도의 평균 인구수
 SELECT district, ROUND(AVG(population)) AS avgPopulation FROM city
@@ -167,5 +167,38 @@ SELECT countrycode, ROUND(AVG(population)) avgPop, COUNT(*) numCity FROM city 	#
 	GROUP BY countrycode
 	HAVING COUNT(*) >= 100
 	ORDER BY AVG(population) DESC;
+/*
+ * 1.7 join
+ */
+	
+# 인구수 800만 보다 큰 도시의 구각명, 도시명, 인구수 
+SELECT country.Name, city.Name, city.population FROM city
+	INNER JOIN country			
+	ON city.countrycode = country.code
+	WHERE city.population > 8000000;
+
+SELECT r.Name countryName, l.Name cityName, l.population FROM city AS l
+	JOIN country AS r 				# inner 생략가능, table 이름 aliasing
+	ON l.countrycode = r.code
+	WHERE l.population > 8000000;
+
+# 아시아 대륙에서 인구수가 가장 많은 도시 top 10
+SELECT l.continent, l.Name, r.Name, r.population  FROM country AS l
+	JOIN city AS r
+	ON l.Code = r.CountryCode
+	WHERE l.continent = 'asia'
+	ORDER BY r.Population DESC
+	LIMIT 10;
+
+# 한국의 공식 언어 
+SELECT * FROM countrylanguage 
+	WHERE countrycode = 'KOR' AND IsOfficial ='T';
+	
+# 아시아 국가의 국가명과 공식언어
+SELECT l.Continent, l.Name, r.`Language` FROM country AS l
+	JOIN countrylanguage AS r
+	ON l.Code = r.CountryCode
+	WHERE l.Continent = 'asia' AND r.IsOfficial ='T';
+	
 
 	
